@@ -18,6 +18,8 @@ defmodule SportHubWeb.Router do
     pipe_through :browser
 
     live "/", DashboardLive, :index
+
+    resources "/import", ImportController, only: [:index, :create]
   end
 
   # Other scopes may use custom stacks.
