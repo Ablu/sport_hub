@@ -10,21 +10,55 @@
     <script defer phx-track-static type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </head>
   <body>
-    <header>
-      <section class="container">
-        <nav role="navigation">
-          <ul>
-            <li><a href="https://hexdocs.pm/phoenix/overview.html">Get Started</a></li>
-            <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
-              <li><%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %></li>
-            <% end %>
-          </ul>
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+      <a class="navbar-brand col-sm-4 col-md-2 mr-0" href="#">SportHub</a>
+        <form class="w-100">
+          <input class="form-control form-control-dark" type="text" placeholder="Search">
+        </form>
+      <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+          <a class="nav-link" href="#">Log out</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="container-fluid">
+      <div class="row navbar-expand-md">
+        <nav class="col-md-3 col-lg-2 bg-light navbar-collapse collapse sidebar" id="sidenav">
+          <div class="sidebar-sticky flex-column w-100 mt-1">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link active" href="#">
+                      <span data-feather="home"></span> Dashboard <span class="sr-only">(current)</span>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#">
+                      <span data-feather="activity"></span> Trends
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#">
+                      <span data-feather="file"></span> Import Data
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#">
+                      <span data-feather="settings"></span> Settings
+                  </a>
+              </li>
+              <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
+              <li  class="nav-item">
+                <%= link "LiveDashboard", class: "nav-link", to: Routes.live_dashboard_path(@conn, :home) %>
+              </li>
+              <% end %>
+            </ul>
+          </div>
         </nav>
-        <a href="https://phoenixframework.org/" class="phx-logo">
-          <img src="<%= Routes.static_path(@conn, "/images/phoenix.png") %>" alt="Phoenix Framework Logo"/>
-        </a>
-      </section>
-    </header>
-    <%= @inner_content %>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+          <%= @inner_content %>
+        </main>
+      </div>
+    </div>
   </body>
 </html>
